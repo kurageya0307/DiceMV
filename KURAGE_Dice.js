@@ -20,7 +20,7 @@
  * @default 1
  *
  * @param ピクチャ開始番号
- * @desc このパラメータで指定したピクチャ番号から6つをピクチャ番号として使用します。
+ * @desc このパラメータで指定したピクチャ番号から6つを使用します。デフォルトのままならばピクチャ番号 1～6番が使用されます。	
  * @default 1
  *
  * @help サイコロをふるプラグインです。
@@ -49,6 +49,7 @@
     //=============================================================================
     var parameters = PluginManager.parameters('KURAGE_Dice');
     var variables_index = Number(parameters['結果の代入先の変数'] || 0);
+    var picture_id_start = Number(parameters['ピクチャ開始番号'] || 0);
 
     //=============================================================================
     //  プラグインコマンドを追加定義
@@ -61,7 +62,7 @@
             case 'showDice':
                 var x = parseInt(args[0], 10).clamp(1, 400) || 1;
                 var y = parseInt(args[1], 10).clamp(1, 400) || 1;
-                $gameScreen.showDice(1, 0, x, y, 100.0, 100.0, 255, 0);
+                $gameScreen.showDice(picture_id_start, 0, x, y, 100.0, 100.0, 255, 0);
                 break;
             case 'throwDice':
                 $gameScreen.throwDice(100, 100);
@@ -204,3 +205,4 @@
     };
 
 })();
+
