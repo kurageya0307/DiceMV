@@ -3,7 +3,7 @@ RPGツクールMV用サイコロプラグイン
 
 ## 使い方
 二つのプラグインコマンド「showDice」と「throwDice」をこんな感じで使ってください。
-![使い方](https://github.com/kurageya0307/DiceMV/blob/master/pictures/screenshot.067.png "サンプル")
+![使い方](https://github.com/kurageya0307/DiceMV/blob/master/pictures/screenshot.069.png "サンプル")
 
 ## ライセンス（プラグイン）
 本プラグインはMITライセンスです。<br>
