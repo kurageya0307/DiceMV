@@ -317,24 +317,24 @@
     
     var _Game_Screen_updatePictures = Game_Screen.prototype.updatePictures;
     Game_Screen.prototype.updatePictures = function() {
-        for(var k=0; k<MAX_DICE_GROUP; k++) {
-            for(var j=0; j<MAX_DICE_NUM; j++) {
-                if( this._dice_picture_3d_array[k][j] && this._dice_picture_3d_array[k][j].length  > 0 && !this._dice_throwings[k][j]) {
-                    var i = this._dice_indices[k][j];
-                    var x = this._dice_picture_3d_array[k][j][i].x();
-                    var y = this._dice_picture_3d_array[k][j][i].y();
-                    this._dice_picture_3d_array[k][j][i].move(0, x, y, 100, 100, 0, 0, 1);
-                    this._dice_indices[k][j] += 1;
-                    if(this._dice_indices[k][j] >= 6){
-                        this._dice_indices[k][j] = 0;
+        if(this._dice_picture_3d_array) {
+            for(var k=0; k<MAX_DICE_GROUP; k++) {
+                for(var j=0; j<MAX_DICE_NUM; j++) {
+                    if( this._dice_picture_3d_array[k][j] && this._dice_picture_3d_array[k][j].length  > 0 && !this._dice_throwings[k][j]) {
+                        var i = this._dice_indices[k][j];
+                        var x = this._dice_picture_3d_array[k][j][i].x();
+                        var y = this._dice_picture_3d_array[k][j][i].y();
+                        this._dice_picture_3d_array[k][j][i].move(0, x, y, 100, 100, 0, 0, 1);
+                        this._dice_indices[k][j] += 1;
+                        if(this._dice_indices[k][j] >= 6){
+                            this._dice_indices[k][j] = 0;
+                        }
+                        i = this._dice_indices[k][j];
+                        this._dice_picture_3d_array[k][j][i].move(0, x, y, 100, 100, 255, 0, 1);
                     }
-                    i = this._dice_indices[k][j];
-                    this._dice_picture_3d_array[k][j][i].move(0, x, y, 100, 100, 255, 0, 1);
                 }
             }
         }
-      /*
-        */
         _Game_Screen_updatePictures.call(this);
       
     };
