@@ -16,7 +16,7 @@
  * @author Y.KURAGE
  *
  * @param ピクチャ開始番号
- * @desc このパラメータで指定したピクチャ番号から120個のピクチャを使用します。デフォルトのままならばピクチャ番号 1～120番です。	
+ * @desc このパラメータで指定したピクチャ番号から120個のピクチャを使用します。デフォルトのままならばピクチャ番号 1～120番です。
  * @default 1
  *
  * @param サイコログループ1の結果の代入先
@@ -60,6 +60,14 @@
  *　ヘッダー部に著作権表示とMITライセンスのURLを書いていただければ，
  *　自由に改変，使用（非商用・商用・R-18何でも可）していただいて問題ありません。
  */
+
+function Dice_Picture() {
+    this.initialize.apply(this, arguments);
+    this._durations = [];
+    this._target_xs = [];
+    this._target_ys = [];
+    this._target_opacities = [];
+}
 
 (function() {
     'use strict';
@@ -161,14 +169,6 @@
         }
     };
 
-    function Dice_Picture() {
-        this.initialize.apply(this, arguments);
-        this._durations = [];
-        this._target_xs = [];
-        this._target_ys = [];
-        this._target_opacities = [];
-    }
-    
     Dice_Picture.prototype = Object.create(Game_Picture.prototype);
     Dice_Picture.prototype.constructor = Dice_Picture;
     Dice_Picture.prototype.setMoves = function(array) {
@@ -183,9 +183,9 @@
             this._target_opacities.push(array[i]._target_opacity);
         }
         this._move_index = 0;
-            
+
     }
-    
+
     var _Game_Picture_updateMove = Game_Picture.prototype.updateMove;
     Dice_Picture.prototype.updateMove = function() {
         if ( this._durations.length > 0 && this._durations[this._move_index] > 0) {
@@ -202,13 +202,13 @@
                 this._target_ys.shift();
                 this._target_opacities.shift();
             }
-    
+
         }
         else {
             _Game_Picture_updateMove.call(this);
         }
     };
-    
+
     var _Game_Screen_initialize = Game_Screen.prototype.initialize;
     Game_Screen.prototype.initialize = function() {
         _Game_Screen_initialize.call(this);
@@ -238,7 +238,7 @@
             this._dice_throwings[dice_group][j] = false;
         }
     };
-    
+
     Array.prototype.shuffle = function() {
           return this.map(function(a){return [a, Math.random()]})
                      .sort(function(a, b){return a[1] - b[1]})
@@ -261,7 +261,7 @@
                     var tmp = [];
                     var x = this._dice_picture_3d_array[dice_group][j][i].x();
                     var y = this._dice_picture_3d_array[dice_group][j][i].y();
-                    if( (i+1)==throwing_val_1 ) { 
+                    if( (i+1)==throwing_val_1 ) {
                         tmp.push({_duration:1, _target_x:x, _target_y:y, _target_opacity:255});
                         tmp.push({_duration:6, _target_x:x-20, _target_y:y-150, _target_opacity:255});
                         tmp.push({_duration:8, _target_x:x-40, _target_y:y-180, _target_opacity:255});
@@ -270,7 +270,7 @@
                         tmp.push({_duration:6, _target_x:x-20, _target_y:y-150, _target_opacity:0});
                         tmp.push({_duration:8, _target_x:x-40, _target_y:y-180, _target_opacity:0});
                     }
-                    if( (i+1)==throwing_val_2 ) { 
+                    if( (i+1)==throwing_val_2 ) {
                         tmp.push({_duration:1, _target_x:x-40, _target_y:y-180, _target_opacity:255});
                         tmp.push({_duration:10, _target_x:x-60, _target_y:y-150, _target_opacity:255});
                         tmp.push({_duration:10, _target_x:x-80, _target_y:y-80, _target_opacity:255});
@@ -279,7 +279,7 @@
                         tmp.push({_duration:10, _target_x:x-60, _target_y:y-150, _target_opacity:0});
                         tmp.push({_duration:10, _target_x:x-80, _target_y:y-80, _target_opacity:0});
                     }
-                    if( (i+1)==throwing_val_3 ) { 
+                    if( (i+1)==throwing_val_3 ) {
                         tmp.push({_duration:1, _target_x:x-80, _target_y:y-80, _target_opacity:255});
                         tmp.push({_duration:8, _target_x:x-100, _target_y:y-140, _target_opacity:255});
                         tmp.push({_duration:8, _target_x:x-110, _target_y:y-160, _target_opacity:255});
@@ -288,21 +288,21 @@
                         tmp.push({_duration:8, _target_x:x-100, _target_y:y-140, _target_opacity:0});
                         tmp.push({_duration:8, _target_x:x-110, _target_y:y-160, _target_opacity:0});
                     }
-                    if( (i+1)==throwing_val_4 ) { 
+                    if( (i+1)==throwing_val_4 ) {
                         tmp.push({_duration:1, _target_x:x-110, _target_y:y-160, _target_opacity:255});
                         tmp.push({_duration:8, _target_x:x-120, _target_y:y-140, _target_opacity:255});
                     } else {
                         tmp.push({_duration:1, _target_x:x-110, _target_y:y-160, _target_opacity:0});
                         tmp.push({_duration:8, _target_x:x-120, _target_y:y-140, _target_opacity:0});
                     }
-        
+
                     this._dice_picture_3d_array[dice_group][j][i].setMoves(tmp);
                 }
             }
         }
         $gameVariables.setValue(var_indices[dice_group], final_value);
     };
-    
+
     Game_Screen.prototype.removeDice = function(dice_group) {
         if ( this._dice_picture_3d_array[dice_group].length > 0 ) {
             for(var j=0; j<MAX_DICE_NUM; j++) {
@@ -314,7 +314,7 @@
             }
         }
     };
-    
+
     var _Game_Screen_updatePictures = Game_Screen.prototype.updatePictures;
     Game_Screen.prototype.updatePictures = function() {
         if(this._dice_picture_3d_array) {
@@ -336,8 +336,7 @@
             }
         }
         _Game_Screen_updatePictures.call(this);
-      
+
     };
 
 })();
-
