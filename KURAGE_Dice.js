@@ -61,6 +61,14 @@
  *　自由に改変，使用（非商用・商用・R-18何でも可）していただいて問題ありません。
  */
 
+function Dice_Picture() {
+    this.initialize.apply(this, arguments);
+    this._durations = [];
+    this._target_xs = [];
+    this._target_ys = [];
+    this._target_opacities = [];
+}
+
 (function() {
     'use strict';
 
@@ -161,13 +169,6 @@
         }
     };
 
-    function Dice_Picture() {
-        this.initialize.apply(this, arguments);
-        this._durations = [];
-        this._target_xs = [];
-        this._target_ys = [];
-        this._target_opacities = [];
-    }
     
     Dice_Picture.prototype = Object.create(Game_Picture.prototype);
     Dice_Picture.prototype.constructor = Dice_Picture;
