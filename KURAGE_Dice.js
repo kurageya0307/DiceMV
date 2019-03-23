@@ -77,9 +77,9 @@ function Dice_Picture() {
     //=============================================================================
     var parameters = PluginManager.parameters('KURAGE_Dice');
     var var_index_1 = Number(parameters['サイコログループ1の結果の代入先'] || 1);
-    var var_index_2 = Number(parameters['サイコログループ1の結果の代入先'] || 2);
-    var var_index_3 = Number(parameters['サイコログループ1の結果の代入先'] || 3);
-    var var_index_4 = Number(parameters['サイコログループ1の結果の代入先'] || 4);
+    var var_index_2 = Number(parameters['サイコログループ2の結果の代入先'] || 2);
+    var var_index_3 = Number(parameters['サイコログループ3の結果の代入先'] || 3);
+    var var_index_4 = Number(parameters['サイコログループ4の結果の代入先'] || 4);
     var var_indices = [var_index_1, var_index_2, var_index_3, var_index_4];
     var picture_id_start = Number(parameters['ピクチャ開始番号'] || 1);
 
